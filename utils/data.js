@@ -45,7 +45,7 @@ const data = {
 			description:
 				'Atomic Habits is the definitive guide to breaking bad behaviors and adopting good ones in four steps, showing you how small, incremental, everyday routines compound into massive, positive change over time.',
 			image: '/images/atomic-habits.jpg',
-			slug: 'thinking-fast-and-slow',
+			slug: 'atomic-habits',
 			cateogory: 'Health and fitness',
 			price: 69,
 			rating: 4.8,

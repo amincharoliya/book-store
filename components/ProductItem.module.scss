@@ -70,6 +70,16 @@
 	overflow: hidden;
 }
 
+.book_add_cart {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+
+	.book_price {
+		margin-bottom: 0;
+	}
+}
+
 .book_price {
 	font-size: 18px;
 	font-weight: 700;
@@ -82,9 +92,18 @@
 	color: #fff;
 	cursor: pointer;
 	font-size: 15px;
+	margin-left: 10px;
 	padding: 12px 10px;
 	transition: all ease 0.2s;
 	width: 100%;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.6;
+		&:hover {
+			box-shadow: none;
+		}
+	}
 
 	&:hover {
 		box-shadow: 0 2px 5px rgb(0 0 0 / 20%);

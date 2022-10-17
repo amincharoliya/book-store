@@ -1,10 +1,16 @@
-import React from 'react';
 import Link from 'next/link';
+import { useContext } from 'react';
+
+import { Store } from '../utils/Store';
 
 // Styling
 import Styles from './Header.module.scss';
 
 export default function Header() {
+	const { state, dispatch } = useContext(Store);
+	const CartItems = state.cart.cartItems.length
+		? state.cart.cartItems.reduce((acc, item) => acc + item.quantity, 0)
+		: 0;
 	return (
 		<header className={Styles.header}>
 			<div className="container">
@@ -23,7 +29,10 @@ export default function Header() {
 									<Link href="/cart">
 										<a>
 											{/* Add "Styles.active" to show active state */}
-											<span>Cart</span>
+											<span>Cart</span>{' '}
+											<span className={Styles.cart_item}>
+												{CartItems}
+											</span>
 										</a>
 									</Link>
 								</li>
