@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
-import Layout from '../../components/Layout';
 import data from '../../utils/data';
 import { Store } from '../../utils/Store';
-
+import Layout from '../../components/Layout';
+import ProductItem from '../../components/ProductItem';
 import Styles from './bookSingle.module.scss';
 
 export default function BookSingle() {
@@ -28,6 +28,15 @@ export default function BookSingle() {
 			},
 		});
 	};
+
+	// Get Top 4 related books based on category
+	const topRelatedBooks = data.products
+		.filter(
+			(product) =>
+				product.category === book.category && product.slug != book.slug
+		)
+		.slice(0, 4);
+
 	if (!book) {
 		return <div>No Book Found!</div>;
 	}
@@ -46,7 +55,7 @@ export default function BookSingle() {
 							</p>
 							<p className={Styles.book_meta}>
 								<strong>Category: </strong>
-								{book.cateogory}
+								{book.category}
 							</p>
 							<p className={Styles.book_meta}>
 								<strong>Review: </strong>
@@ -72,6 +81,18 @@ export default function BookSingle() {
 										: 'Out Of Stock'}
 								</button>
 							</div>
+						</div>
+					</div>
+
+					<div className={Styles.related_books}>
+						<h3 className="t-align-center">Top Related Books</h3>
+						<div className="book_listing">
+							{topRelatedBooks.map((product) => (
+								<ProductItem
+									product={product}
+									key={product.slug}
+								/>
+							))}
 						</div>
 					</div>
 				</div>
