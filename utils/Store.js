@@ -22,8 +22,15 @@ function reducer(state, action) {
 				: [...state.cart.cartItems, newItem];
 			return { ...state, cart: { ...state.cart, cartItems } };
 		}
+		case 'CART_REMOVE_ITEM': {
+			const item = action.payload;
+			const cartItems = state.cart.cartItems.filter(
+				(product) => product.slug !== item
+			);
+			return { ...state, cart: { ...state.cart, cartItems } };
+		}
 		default:
-			return state;
+			throw Error('Invalid action type: ' + action.type);
 	}
 }
 

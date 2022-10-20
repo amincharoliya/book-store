@@ -1,0 +1,136 @@
+/* eslint-disable @next/next/no-img-element */
+import { useContext } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+import { Store } from '../utils/Store';
+import Styles from './cart.module.scss';
+import Layout from '../components/Layout';
+import Notice from '../components/Notice';
+
+const Cart = () => {
+	const router = useRouter();
+	const { state, dispatch } = useContext(Store);
+	const {
+		cart: { cartItems },
+	} = state;
+
+	const removeProduct = (slug) => {
+		dispatch({
+			type: 'CART_REMOVE_ITEM',
+			payload: slug,
+		});
+	};
+
+	const TotalPrice = cartItems.reduce((acc, item) => {
+		return acc + item.price * item.quantity;
+	}, 0);
+
+	const TotalQuantity = cartItems.reduce((acc, item) => {
+		return acc + item.quantity;
+	}, 0);
+
+	return (
+		<Layout>
+			<div className="container">
+				<div className={Styles.cart_page}>
+					<h2>Cart</h2>
+					{cartItems.length == 0 ? (
+						<Notice>
+							<p>
+								No items added in cart{' '}
+								<Link href="/">Go shopping</Link>
+							</p>
+						</Notice>
+					) : (
+						<div className={Styles.cart_page_inner}>
+							<table className={Styles.table}>
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Quantity</th>
+										<th>Price</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{cartItems.map((item) => (
+										<tr key={item.slug}>
+											<td>
+												<Link
+													href={`/books/${item.slug}`}
+												>
+													<a
+														className={
+															Styles.product_name
+														}
+													>
+														<img
+															src={item.image}
+															alt={item.name}
+														/>
+														<strong>
+															{item.name}
+														</strong>
+													</a>
+												</Link>
+											</td>
+											<td>{item.quantity}</td>
+											<td>${item.price}</td>
+											<td>
+												<button
+													className={
+														Styles.remove_product
+													}
+													onClick={() =>
+														removeProduct(item.slug)
+													}
+												>
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														fill="none"
+														viewBox="0 0 24 24"
+														strokeWidth={1.5}
+														stroke="currentColor"
+														height="24px"
+														width="24px"
+													>
+														<path
+															strokeLinecap="round"
+															strokeLinejoin="round"
+															d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+														/>
+													</svg>
+													<span>Remove Product</span>
+												</button>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+							<div className={Styles.cart_action_block}>
+								<div>
+									<p>
+										Quantity:{' '}
+										<strong>{TotalQuantity}</strong>
+									</p>
+									<p>
+										Subtotal: <strong>${TotalPrice}</strong>
+									</p>
+								</div>
+								<button
+									className={Styles.checkout_button}
+									onClick={() => router.push('/checkout')}
+								>
+									Checkout
+								</button>
+							</div>
+						</div>
+					)}
+				</div>
+			</div>
+		</Layout>
+	);
+};
+
+export default Cart;

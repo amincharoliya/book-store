@@ -33,7 +33,7 @@ export default function BookSingle() {
 	const topRelatedBooks = data.products
 		.filter(
 			(product) =>
-				product.category === book.category && product.slug != book.slug
+				product.category === book?.category && product.slug != book.slug
 		)
 		.slice(0, 4);
 
