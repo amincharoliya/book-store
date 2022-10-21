@@ -85,7 +85,7 @@ export default function BookSingle() {
 					</div>
 
 					<div className={Styles.related_books}>
-						<h3 className="t-align-center">Top Related Books</h3>
+						<h3 className="t-align-center">Related Books</h3>
 						<div className="book_listing">
 							{topRelatedBooks.map((product) => (
 								<ProductItem

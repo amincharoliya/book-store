@@ -27,7 +27,7 @@ const data = {
 			countInStock: 5,
 		},
 		{
-			name: 'The-Alchemist.jpg',
+			name: 'The Alchemist',
 			author: 'Paulo Coelho',
 			description:
 				'Combining magic, mysticism, wisdom and wonder into an inspiring tale of self-discovery, The Alchemist has become a modern classic, selling millions of copies around the world and transforming the lives of countless readers across generations.',

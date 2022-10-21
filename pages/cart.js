@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import { Store } from '../utils/Store';
@@ -19,6 +20,16 @@ const Cart = () => {
 		dispatch({
 			type: 'CART_REMOVE_ITEM',
 			payload: slug,
+		});
+	};
+
+	const cartUpdateHandler = (item, quantity) => {
+		dispatch({
+			type: 'CART_ADD_ITEM',
+			payload: {
+				...item,
+				quantity,
+			},
 		});
 	};
 
@@ -75,7 +86,52 @@ const Cart = () => {
 													</a>
 												</Link>
 											</td>
-											<td>{item.quantity}</td>
+											<td>
+												<button
+													className={
+														Styles.action_button
+													}
+													disabled={
+														item.quantity === 1
+															? 'disabled'
+															: 0
+													}
+													onClick={() => {
+														cartUpdateHandler(
+															item,
+															item.quantity - 1
+														);
+													}}
+												>
+													-
+												</button>
+												<span
+													className={
+														Styles.cart_number
+													}
+												>
+													{item.quantity}
+												</span>
+												<button
+													className={
+														Styles.action_button
+													}
+													disabled={
+														item.countInStock ===
+														item.quantity
+															? 'disabled'
+															: 0
+													}
+													onClick={() => {
+														cartUpdateHandler(
+															item,
+															item.quantity + 1
+														);
+													}}
+												>
+													+
+												</button>
+											</td>
 											<td>${item.price}</td>
 											<td>
 												<button
@@ -120,7 +176,9 @@ const Cart = () => {
 								</div>
 								<button
 									className={Styles.checkout_button}
-									onClick={() => router.push('/checkout')}
+									onClick={() =>
+										router.push('/login?redirect=/checkout')
+									}
 								>
 									Checkout
 								</button>
@@ -133,4 +191,4 @@ const Cart = () => {
 	);
 };
 
-export default Cart;
+export default dynamic(() => Promise.resolve(Cart), { ssr: false });

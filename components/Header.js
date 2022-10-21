@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Store } from '../utils/Store';
 
@@ -7,10 +7,15 @@ import { Store } from '../utils/Store';
 import Styles from './Header.module.scss';
 
 export default function Header() {
-	const { state, dispatch } = useContext(Store);
-	const CartItems = state.cart.cartItems.length
-		? state.cart.cartItems.reduce((acc, item) => acc + item.quantity, 0)
-		: 0;
+	const { state } = useContext(Store);
+	const [cartNumber, SetCartNumber] = useState(0);
+
+	useEffect(() => {
+		SetCartNumber(
+			state.cart.cartItems.reduce((acc, item) => acc + item.quantity, 0)
+		);
+	}, [state.cart.cartItems]);
+
 	return (
 		<header className={Styles.header}>
 			<div className="container">
@@ -31,7 +36,7 @@ export default function Header() {
 											{/* Add "Styles.active" to show active state */}
 											<span>Cart</span>{' '}
 											<span className={Styles.cart_item}>
-												{CartItems}
+												{cartNumber}
 											</span>
 										</a>
 									</Link>
