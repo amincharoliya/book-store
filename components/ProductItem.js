@@ -47,7 +47,7 @@ export default function ProductItem({ product }) {
 					<p className={Styles.book_price}>${product.price}</p>
 					<button
 						onClick={() => addToCart()}
-						className={Styles.book_button}
+						className={`${Styles.book_button} button`}
 						disabled={product.countInStock > 0 ? '' : 'disabled'}
 					>
 						{product.countInStock > 0

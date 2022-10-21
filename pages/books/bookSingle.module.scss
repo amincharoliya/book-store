@@ -1,7 +1,3 @@
-.book_single_wrap {
-	padding: 45px 0;
-}
-
 .book_single_details {
 	display: flex;
 }
@@ -61,28 +57,7 @@
 }
 
 .book_button {
-	background-color: #76836e;
-	border: 0;
-	border-radius: 4px;
-	color: #fff;
-	cursor: pointer;
-	font-size: 15px;
-	margin-top: 15px;
-	padding: 12px 10px;
-	transition: all ease 0.2s;
 	width: 100%;
-
-	&:disabled {
-		cursor: not-allowed;
-		opacity: 0.6;
-		&:hover {
-			box-shadow: none;
-		}
-	}
-
-	&:hover {
-		box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
-	}
 }
 
 .related_books {

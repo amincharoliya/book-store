@@ -2,6 +2,7 @@
 	background: url('/images/banner.jpg') no-repeat center;
 	background-size: cover;
 	position: relative;
+	margin-top: -45px;
 }
 
 .banner:before {
@@ -25,13 +26,7 @@
 }
 
 .button {
-	background-color: #76836e;
-	border-radius: 3px;
-	color: #fff;
-	display: inline-block;
-	font-size: 17px;
 	padding: 12px 20px;
-	transition: all ease 0.2s;
 }
 
 .button:hover {

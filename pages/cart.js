@@ -88,9 +88,7 @@ const Cart = () => {
 											</td>
 											<td>
 												<button
-													className={
-														Styles.action_button
-													}
+													className={`${Styles.action_button} button`}
 													disabled={
 														item.quantity === 1
 															? 'disabled'
@@ -113,9 +111,7 @@ const Cart = () => {
 													{item.quantity}
 												</span>
 												<button
-													className={
-														Styles.action_button
-													}
+													className={`${Styles.action_button} button`}
 													disabled={
 														item.countInStock ===
 														item.quantity
@@ -175,7 +171,7 @@ const Cart = () => {
 									</p>
 								</div>
 								<button
-									className={Styles.checkout_button}
+									className={`${Styles.checkout_button} button`}
 									onClick={() =>
 										router.push('/login?redirect=/checkout')
 									}

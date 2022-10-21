@@ -71,7 +71,7 @@ export default function BookSingle() {
 								</p>
 								<button
 									onClick={() => addToCart()}
-									className={Styles.book_button}
+									className={`${Styles.book_button} button`}
 									disabled={
 										book.countInStock > 0 ? '' : 'disabled'
 									}

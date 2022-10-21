@@ -13,7 +13,7 @@ const Banner = () => {
 						Browse through the list of awesome books
 					</p>
 					<Link href="/products">
-						<a className={`${Styles.button} fadeInLeft `}>
+						<a className={`${Styles.button} button fadeInLeft`}>
 							Find Books
 						</a>
 					</Link>
