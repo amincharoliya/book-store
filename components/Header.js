@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
 import { Store } from '../utils/Store';
@@ -7,6 +8,7 @@ import { Store } from '../utils/Store';
 import Styles from './Header.module.scss';
 
 export default function Header() {
+	const { pathname } = useRouter();
 	const { state } = useContext(Store);
 	const [cartNumber, SetCartNumber] = useState(0);
 
@@ -30,7 +32,13 @@ export default function Header() {
 					<div className="header_sidebar">
 						<nav aria-label="main menu" role="navigation">
 							<ul>
-								<li>
+								<li
+									className={
+										pathname.split('/')[1] === 'cart'
+											? Styles.active
+											: ''
+									}
+								>
 									<Link href="/cart">
 										<a>
 											{/* Add "Styles.active" to show active state */}
@@ -41,7 +49,13 @@ export default function Header() {
 										</a>
 									</Link>
 								</li>
-								<li>
+								<li
+									className={
+										pathname.split('/')[1] === 'login'
+											? Styles.active
+											: ''
+									}
+								>
 									<Link href="/login">
 										<a>
 											<span>Login</span>
