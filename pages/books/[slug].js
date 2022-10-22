@@ -4,6 +4,7 @@ import data from '../../utils/data';
 import { Store } from '../../utils/Store';
 import Layout from '../../components/Layout';
 import ProductItem from '../../components/ProductItem';
+import Notice from '../../components/Notice';
 import Styles from './bookSingle.module.scss';
 
 export default function BookSingle() {
@@ -38,7 +39,15 @@ export default function BookSingle() {
 		.slice(0, 4);
 
 	if (!book) {
-		return <div>No Book Found!</div>;
+		return (
+			<Layout>
+				<div className="container">
+					<Notice>
+						<p>Book can't be Found</p>
+					</Notice>
+				</div>
+			</Layout>
+		);
 	}
 	return (
 		<Layout title={book.name}>
@@ -84,17 +93,21 @@ export default function BookSingle() {
 						</div>
 					</div>
 
-					<div className={Styles.related_books}>
-						<h3 className="t-align-center">Related Books</h3>
-						<div className="book_listing">
-							{topRelatedBooks.map((product) => (
-								<ProductItem
-									product={product}
-									key={product.slug}
-								/>
-							))}
+					{topRelatedBooks ? (
+						<div className={Styles.related_books}>
+							<h3 className="t-align-center">Related Books</h3>
+							<div className="book_listing">
+								{topRelatedBooks.map((product) => (
+									<ProductItem
+										product={product}
+										key={product.slug}
+									/>
+								))}
+							</div>
 						</div>
-					</div>
+					) : (
+						''
+					)}
 				</div>
 			</div>
 		</Layout>

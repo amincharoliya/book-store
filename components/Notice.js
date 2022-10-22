@@ -1,8 +1,9 @@
 import Styles from './notice.module.scss';
 
 const Notice = (props) => {
+	const styles = props.styles ? props.styles : {};
 	return (
-		<div className={Styles.notice_wrap}>
+		<div className={Styles.notice_wrap} style={styles}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
