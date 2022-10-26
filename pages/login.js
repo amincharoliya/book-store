@@ -1,18 +1,42 @@
 import Link from 'next/link';
+import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
 import Styles from './login.module.scss';
 
 const Login = () => {
+	const { data: session } = useSession();
+	const router = useRouter();
+	const { redirect } = router.query;
+
+	useEffect(() => {
+		if (session?.user) {
+			router.push(redirect || '/');
+		}
+	}, [session, router, redirect]);
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
-	const submitHandler = ({ email, password }) => {
-		console.log(email, password);
+	const submitHandler = async ({ email, password }) => {
+		try {
+			const result = await signIn('credentials', {
+				redirect: false,
+				email,
+				password,
+			});
+			if (result.error) {
+				alert(result.error);
+			}
+		} catch (err) {
+			alert(err);
+		}
 	};
 
 	return (

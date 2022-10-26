@@ -1,3 +1,4 @@
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
@@ -8,6 +9,7 @@ import { Store } from '../utils/Store';
 import Styles from './Header.module.scss';
 
 export default function Header() {
+	const { data: session } = useSession();
 	const { pathname } = useRouter();
 	const { state } = useContext(Store);
 	const [cartNumber, SetCartNumber] = useState(0);
@@ -56,11 +58,15 @@ export default function Header() {
 											: ''
 									}
 								>
-									<Link href="/login">
-										<a>
-											<span>Login</span>
-										</a>
-									</Link>
+									{session?.user ? (
+										<span>{session.user.name}</span>
+									) : (
+										<Link href="/login">
+											<a>
+												<span>Login</span>
+											</a>
+										</Link>
+									)}
 								</li>
 							</ul>
 						</nav>

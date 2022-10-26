@@ -28,6 +28,15 @@
 		li {
 			margin-left: 15px;
 
+			> span {
+				align-items: center;
+				display: inline-flex;
+				font-size: 18px;
+				min-height: 65px;
+				overflow: hidden;
+				padding: 15px;
+			}
+
 			a {
 				align-items: center;
 				display: inline-flex;
