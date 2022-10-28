@@ -1,9 +1,10 @@
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
 import { Store } from '../utils/Store';
+import { DropdownMenu, MenuButton, Menu, MenuItem } from './DropdownMenu';
 
 // Styling
 import Styles from './Header.module.scss';
@@ -61,7 +62,28 @@ export default function Header() {
 									{status == 'loading' ? (
 										<span>Loading</span>
 									) : session?.user ? (
-										<span>{session.user.name}</span>
+										<DropdownMenu className="dropdown">
+											<MenuButton
+												className={Styles.nav_button}
+											>
+												<span aria-hidden>
+													{session.user.name}
+												</span>
+											</MenuButton>
+											<Menu>
+												<MenuItem>Profile</MenuItem>
+												<MenuItem>Orders</MenuItem>
+												<MenuItem
+													onClick={() =>
+														signOut({
+															callbackUrl: '/',
+														})
+													}
+												>
+													Logout
+												</MenuItem>
+											</Menu>
+										</DropdownMenu>
 									) : (
 										<Link href="/login">
 											<a>

@@ -19,13 +19,13 @@
 	display: flex;
 	justify-content: space-between;
 
-	ul {
+	nav > ul {
 		display: flex;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 
-		li {
+		> li {
 			margin-left: 15px;
 
 			> span {
@@ -68,6 +68,14 @@
 			}
 		}
 	}
+}
+
+.nav_button {
+	display: inline-flex;
+	align-items: center;
+	font-size: 18px;
+	min-height: 65px;
+	padding: 15px;
 }
 
 .header_inner ul li.active a:before {
