@@ -9,7 +9,7 @@ import { Store } from '../utils/Store';
 import Styles from './Header.module.scss';
 
 export default function Header() {
-	const { data: session } = useSession();
+	const { status, data: session } = useSession();
 	const { pathname } = useRouter();
 	const { state } = useContext(Store);
 	const [cartNumber, SetCartNumber] = useState(0);
@@ -58,7 +58,9 @@ export default function Header() {
 											: ''
 									}
 								>
-									{session?.user ? (
+									{status == 'loading' ? (
+										<span>Loading</span>
+									) : session?.user ? (
 										<span>{session.user.name}</span>
 									) : (
 										<Link href="/login">
