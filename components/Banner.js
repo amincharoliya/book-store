@@ -12,7 +12,7 @@ const Banner = () => {
 					<p className="description fadeInLeft">
 						Browse through the list of awesome books
 					</p>
-					<Link href="/products">
+					<Link href="/books">
 						<a className={`${Styles.button} button fadeInLeft`}>
 							Find Books
 						</a>

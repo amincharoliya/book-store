@@ -20,7 +20,6 @@ export function DropdownMenu(props) {
 		? `${props.className} ${Styles.dropdown_menu}`
 		: Styles.dropdown_menu;
 	let customProps = { ...props, className: customClasses };
-	console.log(customClasses);
 
 	return (
 		<DropdownContext.Provider value={value}>
