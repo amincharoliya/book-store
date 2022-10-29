@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
-import Styles from './login.module.scss';
+import Styles from './form.module.scss';
 
 const Login = () => {
 	const { data: session } = useSession();
