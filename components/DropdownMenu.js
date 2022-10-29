@@ -37,9 +37,15 @@ export function MenuButton(props) {
 		? `${props.className} ${Styles.menu_button}`
 		: Styles.dropdown_menu;
 	return (
-		<div className={customClasses} onClick={() => setOn(!on)}>
+		<button
+			className={customClasses}
+			onClick={() => setOn(!on)}
+			aria-haspopup="true"
+			aria-expanded={on}
+			tabIndex="0"
+		>
 			{props.children}
-		</div>
+		</button>
 	);
 }
 

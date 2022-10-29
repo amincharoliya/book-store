@@ -71,16 +71,27 @@ export default function Header() {
 												</span>
 											</MenuButton>
 											<Menu>
-												<MenuItem>Profile</MenuItem>
-												<MenuItem>Orders</MenuItem>
-												<MenuItem
-													onClick={() =>
-														signOut({
-															callbackUrl: '/',
-														})
-													}
-												>
-													Logout
+												<MenuItem>
+													<Link href="/">
+														<a>Profile</a>
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href="/">
+														<a>Orders</a>
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<button
+														onClick={() =>
+															signOut({
+																callbackUrl:
+																	'/',
+															})
+														}
+													>
+														Logout
+													</button>
 												</MenuItem>
 											</Menu>
 										</DropdownMenu>
