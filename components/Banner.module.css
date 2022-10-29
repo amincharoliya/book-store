@@ -1,8 +1,8 @@
 .banner {
 	background: url('/images/banner.jpg') no-repeat center;
 	background-size: cover;
-	position: relative;
 	margin-top: -45px;
+	position: relative;
 }
 
 .banner:before {

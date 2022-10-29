@@ -28,22 +28,26 @@
 		> li {
 			margin-left: 15px;
 
+			&:first-child {
+				margin-left: 0;
+			}
+
 			> span {
 				align-items: center;
 				display: inline-flex;
-				font-size: 18px;
+				font-size: 16px;
 				min-height: 65px;
 				overflow: hidden;
-				padding: 15px;
+				padding: 15px 10;
 			}
 
 			> a {
 				align-items: center;
 				display: inline-flex;
-				font-size: 18px;
+				font-size: 16px;
 				min-height: 65px;
 				overflow: hidden;
-				padding: 15px;
+				padding: 15px 10px;
 				position: relative;
 
 				span {
@@ -71,11 +75,11 @@
 }
 
 .nav_button {
-	display: inline-flex;
 	align-items: center;
-	font-size: 18px;
+	display: inline-flex;
+	font-size: 16px;
 	min-height: 65px;
-	padding: 15px;
+	padding: 15px 10px;
 }
 
 .header_inner ul li.active a:before {
@@ -93,4 +97,12 @@
 	margin-left: 5px;
 	text-align: center;
 	width: 26px;
+}
+
+@media screen and (min-width: 768px) {
+	.header_inner nav > ul > li > span,
+	.nav_button {
+		font-size: 18px;
+		padding: 15px;
+	}
 }

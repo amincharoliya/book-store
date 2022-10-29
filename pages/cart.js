@@ -55,111 +55,123 @@ const Cart = () => {
 						</Notice>
 					) : (
 						<div className={Styles.cart_page_inner}>
-							<table className={Styles.table}>
-								<thead>
-									<tr>
-										<th>Item</th>
-										<th>Quantity</th>
-										<th>Price</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									{cartItems.map((item) => (
-										<tr key={item.slug}>
-											<td>
-												<Link
-													href={`/books/${item.slug}`}
-												>
-													<a
+							<div className={Styles.cart_table}>
+								<table className={Styles.table}>
+									<thead>
+										<tr>
+											<th className={Styles.item_th}>
+												Item
+											</th>
+											<th className={Styles.quantity_th}>
+												Quantity
+											</th>
+											<th>Price</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										{cartItems.map((item) => (
+											<tr key={item.slug}>
+												<td>
+													<Link
+														href={`/books/${item.slug}`}
+													>
+														<a
+															className={
+																Styles.product_name
+															}
+														>
+															<img
+																src={item.image}
+																alt={item.name}
+															/>
+															<strong>
+																{item.name}
+															</strong>
+														</a>
+													</Link>
+												</td>
+												<td>
+													<button
+														className={`${Styles.action_button} button`}
+														disabled={
+															item.quantity === 1
+																? 'disabled'
+																: 0
+														}
+														onClick={() => {
+															cartUpdateHandler(
+																item,
+																item.quantity -
+																	1
+															);
+														}}
+													>
+														-
+													</button>
+													<span
 														className={
-															Styles.product_name
+															Styles.cart_number
 														}
 													>
-														<img
-															src={item.image}
-															alt={item.name}
-														/>
-														<strong>
-															{item.name}
-														</strong>
-													</a>
-												</Link>
-											</td>
-											<td>
-												<button
-													className={`${Styles.action_button} button`}
-													disabled={
-														item.quantity === 1
-															? 'disabled'
-															: 0
-													}
-													onClick={() => {
-														cartUpdateHandler(
-															item,
-															item.quantity - 1
-														);
-													}}
-												>
-													-
-												</button>
-												<span
-													className={
-														Styles.cart_number
-													}
-												>
-													{item.quantity}
-												</span>
-												<button
-													className={`${Styles.action_button} button`}
-													disabled={
-														item.countInStock ===
-														item.quantity
-															? 'disabled'
-															: 0
-													}
-													onClick={() => {
-														cartUpdateHandler(
-															item,
-															item.quantity + 1
-														);
-													}}
-												>
-													+
-												</button>
-											</td>
-											<td>${item.price}</td>
-											<td>
-												<button
-													className={
-														Styles.remove_product
-													}
-													onClick={() =>
-														removeProduct(item.slug)
-													}
-												>
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														fill="none"
-														viewBox="0 0 24 24"
-														strokeWidth={1.5}
-														stroke="currentColor"
-														height="24px"
-														width="24px"
+														{item.quantity}
+													</span>
+													<button
+														className={`${Styles.action_button} button`}
+														disabled={
+															item.countInStock ===
+															item.quantity
+																? 'disabled'
+																: 0
+														}
+														onClick={() => {
+															cartUpdateHandler(
+																item,
+																item.quantity +
+																	1
+															);
+														}}
 													>
-														<path
-															strokeLinecap="round"
-															strokeLinejoin="round"
-															d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-														/>
-													</svg>
-													<span>Remove Product</span>
-												</button>
-											</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
+														+
+													</button>
+												</td>
+												<td>${item.price}</td>
+												<td>
+													<button
+														className={
+															Styles.remove_product
+														}
+														onClick={() =>
+															removeProduct(
+																item.slug
+															)
+														}
+													>
+														<svg
+															xmlns="http://www.w3.org/2000/svg"
+															fill="none"
+															viewBox="0 0 24 24"
+															strokeWidth={1.5}
+															stroke="currentColor"
+															height="24px"
+															width="24px"
+														>
+															<path
+																strokeLinecap="round"
+																strokeLinejoin="round"
+																d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+															/>
+														</svg>
+														<span>
+															Remove Product
+														</span>
+													</button>
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
 							<div className={Styles.cart_action_block}>
 								<div>
 									<p>

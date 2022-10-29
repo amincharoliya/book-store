@@ -1,11 +1,9 @@
 .book_single_details {
 	display: flex;
+	flex-direction: column;
 }
 
 .book_single_content {
-	flex: 1;
-	padding-left: 25px;
-
 	h2 {
 		font-size: 34px;
 		margin-bottom: 15px;
@@ -18,11 +16,11 @@
 	border: 1px solid #76836e;
 	border-radius: 4px;
 	display: flex;
-	height: 500px;
+	height: 250px;
 	justify-content: center;
 	max-width: 100%;
 	position: relative;
-	width: 400px;
+	margin-bottom: 20px;
 
 	img {
 		max-height: 100%;
@@ -62,4 +60,21 @@
 
 .related_books {
 	margin: 45px 0;
+}
+
+@media screen and (min-width: 768px) {
+	.book_single_details {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.book_single_content {
+		flex: 1;
+		padding-left: 25px;
+	}
+
+	.book_image {
+		width: 400px;
+		height: 500px;
+	}
 }
