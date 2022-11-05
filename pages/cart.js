@@ -185,7 +185,7 @@ const Cart = () => {
 								<button
 									className={`${Styles.checkout_button} button`}
 									onClick={() =>
-										router.push('/login?redirect=/checkout')
+										router.push('/login?redirect=/shipping')
 									}
 								>
 									Checkout
