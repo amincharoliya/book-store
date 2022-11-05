@@ -28,14 +28,34 @@
 	}
 
 	button {
-		width: 100%;
 		margin-bottom: 15px;
+		width: 100%;
+	}
+
+	.input_block {
+		margin-bottom: 25px;
+
+		input,
+		label {
+			display: inline-block;
+			width: auto;
+		}
+	}
+
+	.buttons_wrap {
+		display: flex;
+		justify-content: space-between;
+
+		button {
+			width: auto;
+			min-width: 100px;
+		}
 	}
 
 	.error {
 		color: red;
 		display: block;
-		margin: -15px 0 20px;
 		font-size: 90%;
+		margin: -15px 0 20px;
 	}
 }
