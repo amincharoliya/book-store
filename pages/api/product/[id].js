@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 	try {
 		book = await Product.findById(id);
 	} catch (err) {
-		return new Error(err);
+		return res.status(404).json({ message: 'No Book Found' });
 	}
 
 	if (!book) {
