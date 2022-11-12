@@ -1,23 +1,26 @@
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
-import data from '../../utils/data';
 import { Store } from '../../utils/Store';
 import Layout from '../../components/Layout';
 import ProductItem from '../../components/ProductItem';
 import Notice from '../../components/Notice';
 import Styles from './bookSingle.module.scss';
+import db from '../../utils/db';
+import Product from '../../models/Product';
 
-export default function BookSingle() {
+export default function BookSingle(props) {
 	const { state, dispatch } = useContext(Store);
 	const { query } = useRouter();
 	const { slug } = query;
-	const book = data.products.find((book) => book.slug == slug);
-	const addToCart = () => {
+	const book = props.products.find((book) => book.slug == slug);
+	const addToCart = async () => {
 		const bookInCart = state.cart.cartItems.find(
 			(item) => item.slug === book.slug
 		);
 		const quantity = bookInCart ? bookInCart.quantity + 1 : 1;
-		if (book.countInStock < quantity) {
+		let data = await fetch(`/api/product/${book._id}`);
+		data = await data.json();
+		if (Number(data.book.countInStock) < Number(quantity)) {
 			alert('Sorry, Product is out of stock now');
 			return;
 		}
@@ -31,7 +34,7 @@ export default function BookSingle() {
 	};
 
 	// Get Top 4 related books based on category
-	const topRelatedBooks = data.products
+	const topRelatedBooks = props.products
 		.filter(
 			(product) =>
 				product.category === book?.category && product.slug != book.slug
@@ -112,4 +115,15 @@ export default function BookSingle() {
 			</div>
 		</Layout>
 	);
+}
+
+export async function getServerSideProps() {
+	await db.connect();
+	const products = await Product.find().lean();
+
+	return {
+		props: {
+			products: products.map(db.convertDoctoObj),
+		},
+	};
 }

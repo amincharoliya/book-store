@@ -6,7 +6,7 @@ const handler = async (req, res) => {
 	let books;
 
 	try {
-		books = await Product.find();
+		books = await Product.find().lean();
 	} catch (err) {
 		return new Error(err);
 	}

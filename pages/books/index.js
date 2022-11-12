@@ -1,9 +1,10 @@
 import Layout from '../../components/Layout';
 import ProductItem from '../../components/ProductItem';
-import data from '../../utils/data';
+import Product from '../../models/Product';
+import db from '../../utils/db';
 
-const Books = () => {
-	const books = data.products;
+const Books = (props) => {
+	const books = props.products;
 
 	return (
 		<Layout title="Browse Books">
@@ -33,3 +34,14 @@ const Books = () => {
 };
 
 export default Books;
+
+export async function getServerSideProps() {
+	await db.connect();
+	const products = await Product.find().lean();
+
+	return {
+		props: {
+			products: products.map(db.convertDoctoObj),
+		},
+	};
+}

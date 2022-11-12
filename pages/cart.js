@@ -23,7 +23,13 @@ const Cart = () => {
 		});
 	};
 
-	const cartUpdateHandler = (item, quantity) => {
+	const cartUpdateHandler = async (item, quantity) => {
+		let data = await fetch(`/api/product/${item._id}`);
+		data = await data.json();
+		if (Number(data.book.countInStock) < Number(quantity)) {
+			alert('Sorry, Product is out of stock now');
+			return;
+		}
 		dispatch({
 			type: 'CART_ADD_ITEM',
 			payload: {

@@ -2,10 +2,12 @@ import Layout from '../components/Layout';
 import Banner from '../components/Banner';
 import data from '../utils/data';
 import ProductItem from '../components/ProductItem';
+import db from '../utils/db';
+import Product from '../models/Product';
 
-export default function Home() {
+export default function Home(props) {
 	// Get Top 4 Rated books based on rating
-	const topRatedBooks = data.products
+	const topRatedBooks = props.products
 		.filter((product) => product.rating >= 4.5)
 		.slice(0, 4);
 	return (
@@ -23,4 +25,15 @@ export default function Home() {
 			</div>
 		</Layout>
 	);
+}
+
+export async function getServerSideProps() {
+	await db.connect();
+	const products = await Product.find().lean();
+
+	return {
+		props: {
+			products: products.map(db.convertDoctoObj),
+		},
+	};
 }

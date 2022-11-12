@@ -8,12 +8,15 @@ import Styles from './ProductItem.module.scss';
 export default function ProductItem({ product }) {
 	const { state, dispatch } = useContext(Store);
 
-	const addToCart = () => {
+	const addToCart = async () => {
 		const bookInCart = state.cart.cartItems.find(
 			(item) => item.slug === product.slug
 		);
 		const quantity = bookInCart ? bookInCart.quantity + 1 : 1;
-		if (product.countInStock < quantity) {
+
+		let data = await fetch(`/api/product/${product._id}`);
+		data = await data.json();
+		if (Number(data.book.countInStock) < Number(quantity)) {
 			alert('Sorry, Product is out of stock now');
 			return;
 		}
