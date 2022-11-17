@@ -72,7 +72,7 @@ export default function Header() {
 											</MenuButton>
 											<Menu>
 												<MenuItem>
-													<Link href="/">
+													<Link href="/profile">
 														<a>Profile</a>
 													</Link>
 												</MenuItem>
