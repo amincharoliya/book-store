@@ -6,6 +6,8 @@ import Link from 'next/link';
 
 import { Store } from '../utils/Store';
 import Styles from './cart.module.scss';
+import TableStyles from './table.module.scss';
+
 import Layout from '../components/Layout';
 import Notice from '../components/Notice';
 
@@ -62,7 +64,7 @@ const Cart = () => {
 					) : (
 						<div className={Styles.cart_page_inner}>
 							<div className={Styles.cart_table}>
-								<table className={Styles.table}>
+								<table className={TableStyles.table}>
 									<thead>
 										<tr>
 											<th className={Styles.item_th}>

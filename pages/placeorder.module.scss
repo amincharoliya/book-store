@@ -1,0 +1,47 @@
+.oder_page {
+	display: flex;
+}
+
+.oder_page_title {
+	font-size: 30px;
+}
+
+.oder_page_details {
+	width: 70%;
+}
+
+.oder_page_summary {
+	flex: 1;
+	margin-left: 25px;
+}
+
+.action_block {
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgb(0 0 0 / 10%);
+	flex: 1 1;
+	margin-bottom: 25px;
+	padding: 25px;
+
+	h3 {
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+
+	p {
+		margin-bottom: 20px;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+}
+
+.order_summary_row {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.order_button {
+	width: 100%;
+}
