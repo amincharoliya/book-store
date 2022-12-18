@@ -77,7 +77,7 @@ export default function Header() {
 													</Link>
 												</MenuItem>
 												<MenuItem>
-													<Link href="/">
+													<Link href="/order-history">
 														<a>Orders</a>
 													</Link>
 												</MenuItem>
