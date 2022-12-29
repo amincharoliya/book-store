@@ -19,7 +19,7 @@ export default function Layout({ title, children }) {
 				<footer className="footer">
 					<div className="container">
 						Built with Nextjs and MongoDB by{' '}
-						<Link href="https:www.amincharoliya.com">
+						<Link href="https://www.amincharoliya.com/">
 							<a target="_blank">Amin Charoliya</a>
 						</Link>
 					</div>
